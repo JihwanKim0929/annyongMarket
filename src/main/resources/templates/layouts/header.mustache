@@ -1,0 +1,15 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>안뇽마켓</title>
+</head>
+<body>
+{{#isLoggedIn}}
+    {{username}}님 환영합니다!&emsp;
+    <a href="/user/logout">로그아웃</a>&emsp;
+    <a href="/chat/rooms">내 채팅방 목록</a>
+{{/isLoggedIn}}
+{{^isLoggedIn}}
+    <a href="/login">로그인</a>
+{{/isLoggedIn}}

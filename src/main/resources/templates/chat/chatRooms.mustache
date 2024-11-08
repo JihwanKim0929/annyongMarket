@@ -1,0 +1,10 @@
+{{>layouts/header}}
+
+<h1>Your Chat Rooms</h1>
+<ul>
+    {{#chatRooms}}
+        <li><a href="/chat/startByChatRoomId/{{id}}">id:{{id}},{{siteUser1.username}}과(와) {{siteUser2.username}}의 채팅방</a></li>
+    {{/chatRooms}}
+</ul>
+<a href="board/list">판매글 목록으로</a>
+{{>layouts/footer}}

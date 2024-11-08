@@ -1,0 +1,16 @@
+{{>layouts/header}}
+<h2>게시글 작성</h2>
+<form action="/board/create" method="post" enctype="multipart/form-data">
+    title
+    <input type="text" name="title">
+    content
+    <input type="text" name="content">
+    image
+    <input type="file" name="image" accept="image/*">
+    <button type="submit">작성완료</button>
+</form>
+<form action="/board/list" method="get">
+    <button type="submit">작성 취소</button>
+</form>
+{{>layouts/footer}}
+

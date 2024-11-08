@@ -1,0 +1,15 @@
+{{>layouts/header}}
+<h1>안뇽마켓</h1>
+<h2>로그인</h2>
+<hr>
+<form action="/user/login" method="post" name="loginForm">
+    username
+    <input id="username" type="text" name="username" placeholder="username"/>
+    <br>
+    password
+    <input id="password" type="password" name="password" placeholder="password"/>
+    <br>
+    <button type="submit">로그인!</button>
+</form>
+<a href="/user/new">회원가입</a>
+{{>layouts/footer}}
