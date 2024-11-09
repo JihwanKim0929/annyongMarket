@@ -17,9 +17,14 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private BoardService boardService;
+    @Autowired
+    private ChatRoomService chatRoomService;
 
     public SiteUserDto createUser(SiteUserDto userDto){
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        userDto.setPenalty(0);
         SiteUser created = userRepository.save(userDto.get_SiteUser());
         return created.get_SiteUserDto();
     }
@@ -33,4 +38,9 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
+    public void deleteUser(SiteUser user) {
+        boardService.deleteBoardByUser(user);
+        chatRoomService.deleteChatRoomByUser(user);
+        userRepository.delete(user);
+    }
 }

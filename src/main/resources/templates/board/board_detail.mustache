@@ -13,6 +13,18 @@
                 <button type="submit">작성자와 채팅 시작!</button>
             </form>
         {{/isNotBoardAuthor}}
+        {{^isNotBoardAuthor}}
+            <form action="/board/{{id}}/status" method="post">
+                <select name="status" onchange="this.form.submit()">
+                    <option value="Selling" {{#isSelling}}selected{{/isSelling}}>판매중(Selling)</option>
+                    <option value="Reserved" {{#isReserved}}selected{{/isReserved}}>예약중(Reserved)</option>
+                    <option value="SoldOut" {{#isSoldOut}}selected{{/isSoldOut}}>판매완료(Sold Out)</option>
+                </select>
+            </form>
+            <form action="/board/{{id}}/delete" method="get">
+                <button type="submit">판매글 삭제</button>
+            </form>
+        {{/isNotBoardAuthor}}
     {{/isLoggedIn}}
     {{^isLoggedIn}}
         <form action="/login" method="get">

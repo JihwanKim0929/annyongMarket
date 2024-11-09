@@ -28,7 +28,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	runtimeOnly 'com.h2database:h2'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-
+	implementation "com.deepl.api:deepl-java:1.6.0"
 }
 
 tasks.named('test') {

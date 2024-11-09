@@ -3,6 +3,7 @@ package com.example.demo.Controller;
 import com.example.demo.Service.ChatMessageService;
 import com.example.demo.Service.ChatRoomService;
 import com.example.demo.Service.UserService;
+import com.example.demo.entity.ChatMessage;
 import com.example.demo.entity.ChatRoom;
 import com.example.demo.entity.SiteUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ChatController {
@@ -29,9 +34,10 @@ public class ChatController {
         SiteUser currentUser = userService.getUserByUserName(principal.getName());
         SiteUser opponent = userService.getUserById(opponentId);
         ChatRoom chatRoom = chatRoomService.findOrCreateChatRoom(currentUser, opponent);
+        List<ChatMessage> messages = chatMessageService.getMessagesByChatRoom(chatRoom);
         model.addAttribute("chatRoom", chatRoom);
         model.addAttribute("user",currentUser);
-        model.addAttribute("messages",chatMessageService.getMessagesByChatRoom(chatRoom));
+        model.addAttribute("messages",messages);
         model.addAttribute("opponent",opponent);
         return "chat/chat";
     }
@@ -45,9 +51,17 @@ public class ChatController {
             opponent = chatRoom.getSiteUser2();
         else
             opponent = chatRoom.getSiteUser1();
+        List<ChatMessage> messages = chatMessageService.getMessagesByChatRoom(chatRoom);
+        List<Map<String,Object>> messagesWithIsCurrentUser = new ArrayList<>();
+        for (ChatMessage message : messages) {
+            Map<String,Object> map = new HashMap<>();
+            map.put("message",message);
+            map.put("isCurrentUser", message.getSender().getId().equals(currentUser.getId()));
+            messagesWithIsCurrentUser.add(map);
+        }
         model.addAttribute("chatRoom", chatRoom);
         model.addAttribute("user",currentUser);
-        model.addAttribute("messages",chatMessageService.getMessagesByChatRoom(chatRoom));
+        model.addAttribute("messagesWithIsCurrentUser",messagesWithIsCurrentUser);
         model.addAttribute("opponent",opponent);
         return "chat/chat";
     }

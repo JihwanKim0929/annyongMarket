@@ -20,4 +20,10 @@ public class ChatMessageService {
     public void saveMessage(ChatMessage chatMessage) {
         chatMessageRepository.save(chatMessage);
     }
+    public void deleteMessageByChatRoom(ChatRoom chatRoom) {
+        List<ChatMessage> messages = chatMessageRepository.findByChatRoom(chatRoom);
+        for (ChatMessage chatMessage : messages) {
+            chatMessageRepository.delete(chatMessage);
+        }
+    }
 }

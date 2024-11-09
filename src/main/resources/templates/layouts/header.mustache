@@ -9,7 +9,15 @@
     {{username}}님 환영합니다!&emsp;
     <a href="/user/logout">로그아웃</a>&emsp;
     <a href="/chat/rooms">내 채팅방 목록</a>
+    &emsp;&emsp;&emsp;
+    <a href="/user/delete">회원탈퇴</a>
 {{/isLoggedIn}}
 {{^isLoggedIn}}
     <a href="/login">로그인</a>
 {{/isLoggedIn}}
+{{#msg}}
+    <div>
+        {{msg}}
+        <a href="/board/list">X</a>
+    </div>
+{{/msg}}

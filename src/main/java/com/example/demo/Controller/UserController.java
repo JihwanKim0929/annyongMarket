@@ -2,6 +2,7 @@ package com.example.demo.Controller;
 
 import com.example.demo.Service.UserService;
 import com.example.demo.dto.SiteUserDto;
+import com.example.demo.entity.SiteUser;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,6 +41,13 @@ public class UserController {
     @ResponseBody
     public String user(Principal principal){
         return principal.getName();
+    }
+
+    @GetMapping("/user/delete")
+    public String deleteUser(Principal principal){
+        SiteUser user = userService.getUserByUserName(principal.getName());
+        userService.deleteUser(user);
+        return "redirect:/user/logout";
     }
 
     @GetMapping("/")

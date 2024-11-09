@@ -1,14 +1,33 @@
 {{>layouts/header}}
 <h2>Chat Room with {{opponent.username}}</h2>
 <div id="chat" style="border:1px solid #ccc; padding:10px; width:300px; height:400px; overflow-y:scroll;">
-    {{#messages}}
-        <p><strong>{{sender.username}}</strong>: {{content}}</p>
-    {{/messages}}
+    {{#messagesWithIsCurrentUser}}
+        <p class="{{#isCurrentUser}}my-message{{/isCurrentUser}}{{^isCurrentUser}}opponent-message{{/isCurrentUser}}"><strong>{{message.sender.username}}</strong>: {{message.content}}{{#message.translation}}<br>(trans){{message.translation}}{{/message.translation}}</p>
+    {{/messagesWithIsCurrentUser}}
 </div>
 <input type="text" id="messageInput" placeholder="Enter message" onkeydown="handleEnter(event)">
 <button onclick="sendMessage()">전송</button>
 <br>
 <a href="/board/list">판매글 목록으로</a>
+
+<style>
+    .my-message {
+        background-color: #e0f7fa;
+        padding: 5px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        text-align: right;
+    }
+
+    .opponent-message {
+        background-color: #ffcccb;
+        padding: 5px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        text-align: left;
+    }
+</style>
+
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.0/dist/sockjs.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
 <script>
@@ -36,7 +55,17 @@
     function showMessage(message) {
         var chat = document.getElementById("chat");
         var messageElement = document.createElement("p");
-        messageElement.innerHTML = "<strong>" + message.sender.username + ":</strong> " + message.content;
+        chatMessage = "<strong>" + message.sender.username + ":</strong> " + message.content ;
+        if(message.translation){
+            chatMessage = chatMessage + "<br> (trans)" + message.translation;
+        }
+        messageElement.innerHTML = chatMessage;
+        if(message.sender.id === {{user.id}}){
+            messageElement.classList.add("my-message")
+        }
+        else{
+            messageElement.classList.add("opponent-message")
+        }
         chat.appendChild(messageElement);
         chat.scrollTop = chat.scrollHeight;
     }

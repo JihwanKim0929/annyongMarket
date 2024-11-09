@@ -12,6 +12,8 @@ import java.util.List;
 public class ChatRoomService {
     @Autowired
     private ChatRoomRepository chatRoomRepository;
+    @Autowired
+    private ChatMessageService chatMessageService;
 
     public ChatRoom findOrCreateChatRoom(SiteUser siteUser1, SiteUser siteUser2) {
 
@@ -37,5 +39,13 @@ public class ChatRoomService {
 
     public ChatRoom getChatRoomById(Long id){
         return chatRoomRepository.findById(id).orElse(null);
+    }
+
+    public void deleteChatRoomByUser(SiteUser user) {
+        List<ChatRoom> chatRooms = getChatRoomOfUser(user);
+        for(ChatRoom chatRoom : chatRooms){
+            chatMessageService.deleteMessageByChatRoom(chatRoom);
+            chatRoomRepository.delete(chatRoom);
+        }
     }
 }

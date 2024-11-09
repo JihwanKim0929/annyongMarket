@@ -1,7 +1,6 @@
 package com.example.demo.entity;
 
 import com.example.demo.dto.SiteUserDto;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,12 +20,18 @@ public class SiteUser {
     private String username;
 
     private String password;
-    @JsonIgnore
+
+    private String lang;
+
+    private Integer penalty;
+
     public SiteUserDto get_SiteUserDto(){
         return SiteUserDto.builder()
                 .id(id)
                 .username(username)
                 .password(password)
+                .lang(lang)
+                .penalty(penalty)
                 .build();
     }
 }

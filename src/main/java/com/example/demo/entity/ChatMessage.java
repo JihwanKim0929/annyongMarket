@@ -19,4 +19,6 @@ public class ChatMessage {
     private SiteUser sender;
 
     private String content;
+
+    private String translation;
 }

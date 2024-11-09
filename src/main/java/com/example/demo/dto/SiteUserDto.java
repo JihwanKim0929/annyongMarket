@@ -17,12 +17,18 @@ public class SiteUserDto {
 
     private String password;
 
+    private String lang;
+
+    private Integer penalty;
+
     @JsonIgnore
     public SiteUser get_SiteUser(){
         return SiteUser.builder()
                 .id(id)
                 .username(username)
                 .password(password)
+                .lang(lang)
+                .penalty(penalty)
                 .build();
     }
 }

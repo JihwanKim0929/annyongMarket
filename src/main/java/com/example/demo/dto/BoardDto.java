@@ -24,6 +24,8 @@ public class BoardDto {
 
     private String image_url;
 
+    private String status;
+
     public Board getBoard() {
         return Board.builder()
                 .id(id)
@@ -31,6 +33,7 @@ public class BoardDto {
                 .content(content)
                 .author(author)
                 .image_url(image_url)
+                .status(status)
                 .build();
     }
 }
