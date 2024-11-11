@@ -48,19 +48,19 @@ public class ChatMessageController {
 
         ChatRoom chatRoom = chatRoomService.getChatRoomById(chatRoomId);
         chatMessage.setChatRoom(chatRoom);
-
-        SiteUser opponent;
-        if(senderId.equals(chatRoom.getSiteUser1().getId()))
-            opponent = chatRoom.getSiteUser2();
-        else
-            opponent = chatRoom.getSiteUser1();
-        String opponentLang = opponent.getLang();
-        if(!opponentLang.equals(sender.getLang())){
-            translator = new Translator(authKey);
-            TextResult result = translator.translateText(content,null,opponentLang);
-            chatMessage.setTranslation(result.getText());
-        }
-
+        try {
+            SiteUser opponent;
+            if (senderId.equals(chatRoom.getSiteUser1().getId()))
+                opponent = chatRoom.getSiteUser2();
+            else
+                opponent = chatRoom.getSiteUser1();
+            String opponentLang = opponent.getLang();
+            if (!opponentLang.equals(sender.getLang())) {
+                translator = new Translator(authKey);
+                TextResult result = translator.translateText(content, null, opponentLang);
+                chatMessage.setTranslation(result.getText());
+            }
+        } catch (Exception e) {}
         chatMessageService.saveMessage(chatMessage);
         return chatMessage;
     }

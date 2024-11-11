@@ -24,15 +24,14 @@ public class ChatRoomController {
     public String getUserRelatedChatRooms(Model model, Principal principal) {
         SiteUser currentUser = userService.getUserByUserName(principal.getName());
         List<ChatRoom> chatRooms = chatRoomService.getChatRoomOfUser(currentUser);
-        List<Boolean> isFirst = new ArrayList<>();
         for (ChatRoom chatRoom : chatRooms) {
             if (currentUser.getId().equals(chatRoom.getSiteUser1().getId()))
-                isFirst.add(true);
+                chatRoom.setSiteUser1(null);
             else
-                isFirst.add(false);
+                chatRoom.setSiteUser2(null);
+            chatRooms.set(chatRooms.indexOf(chatRoom), chatRoom);
         }
         model.addAttribute("chatRooms", chatRooms);
-        model.addAttribute("isFirst", isFirst);
         return "chat/chatRooms";
     }
 }
