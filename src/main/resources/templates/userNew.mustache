@@ -1,21 +1,37 @@
 {{>layouts/header}}
-<h2>회원가입</h2>
-<form action="/user/create" method="post">
-    username
-    <input type="text" name="username">
-    <br>
-    password
-    <input type="text" name="password">
-    <br>
-    language
-    <select name="lang">
-        <option value="KO">한국어</option>
-        <option value="en-US">English</option>
-        <option value="ZH">中文</option>
-        <option value="JA">日本語</option>
-        <option value="DE">Deutsch</option>
-        <option value="FR">français</option>
-    </select>
-    <button type="submit">submit</button>
-</form>
+<div class="container">
+    <div class="mt-2">
+        <h2>회원가입</h2>
+    </div>
+    <hr>
+    <form action="/user/create" method="post">
+        <div class="mb-3 row">
+            <label for="username" class="col-sm-2 col-form-label">Username</label>
+            <div class="col-sm-10">
+                <input id="username" type="text" name="username" placeholder="username" class="form-control"  style="border:1px solid #ccc; padding:10px; width:300px;"/>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input id="password" type="text" name="password" placeholder="password" class="form-control"  style="border:1px solid #ccc; padding:10px; width:300px;"/>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="username" class="col-sm-2 col-form-label">Language</label>
+            <div class="col-sm-10">
+                <select name="lang" class="form-select form-select-sm" aria-label=".form-select-sm example" style="border:1px solid #ccc; padding:10px; width:300px;">
+                    <option selected>Open this select menu</option>
+                    <option value="KO">한국어</option>
+                    <option value="en-US">English</option>
+                    <option value="ZH">中文</option>
+                    <option value="JA">日本語</option>
+                    <option value="DE">Deutsch</option>
+                    <option value="FR">français</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mb-3">submit</button>
+    </form>
+</div>
 {{>layouts/footer}}

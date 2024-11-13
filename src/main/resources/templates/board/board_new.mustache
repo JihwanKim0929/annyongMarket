@@ -1,16 +1,29 @@
 {{>layouts/header}}
-<h2>게시글 작성</h2>
-<form action="/board/create" method="post" enctype="multipart/form-data">
-    title
-    <input type="text" name="title">
-    content
-    <input type="text" name="content">
-    image
-    <input type="file" name="image" accept="image/*">
-    <button type="submit">작성완료</button>
-</form>
-<form action="/board/list" method="get">
-    <button type="submit">작성 취소</button>
-</form>
+<div class="container">
+    <div class="mt-2">
+        <h2>게시글 작성</h2>
+    </div>
+    <hr>
+    <form action="/board/create" method="post" enctype="multipart/form-data">
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Title</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" name="title">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label"> Content</label>
+            <textarea class="form-control" name="content" id="exampleFormControlTextarea1 rows=3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Image</label>
+            <input class="form-control" type="file" id="formFile" name="image" accept="image/*">
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-3">작성 완료</button>
+    </form>
+    <form action="/board/list" method="get">
+        <button type="submit" class="btn btn-sm btn-outline-secondary">작성 취소</button>
+    </form>
+</div>
 {{>layouts/footer}}
 

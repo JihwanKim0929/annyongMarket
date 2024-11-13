@@ -1,15 +1,27 @@
 {{>layouts/header}}
-<h1>안뇽마켓</h1>
-<h2>로그인</h2>
-<hr>
-<form action="/user/login" method="post" name="loginForm">
-    username
-    <input id="username" type="text" name="username" placeholder="username"/>
-    <br>
-    password
-    <input id="password" type="password" name="password" placeholder="password"/>
-    <br>
-    <button type="submit">로그인!</button>
-</form>
-<a href="/user/new">회원가입</a>
+<div class="container">
+    <div class="mt-2">
+        <h2>로그인</h2>
+    </div>
+    <hr>
+    <form action="/user/login" method="post" name="loginForm">
+        <div class="mb-3 row">
+            <label for="username" class="col-sm-2 col-form-label">Username</label>
+            <div class="col-sm-10">
+                <input id="username" type="text" name="username" placeholder="username" class="form-control" style="border:1px solid #ccc; padding:10px; width:300px;"/>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input id="password" type="password" name="password" placeholder="password" class="form-control" style="border:1px solid #ccc; padding:10px; width:300px; display:inline;"/>
+                &emsp;
+                <button type="submit" class="btn btn-primary mb-3">로그인!</button>
+            </div>
+        </div>
+    </form>
+    <a href="/board/list"  class="btn btn-outline-success me-2">판매글 목록으로</a>
+    <a href="/user/new"  class="btn btn-outline-success me-2">회원가입</a>
+
+</div>
 {{>layouts/footer}}
