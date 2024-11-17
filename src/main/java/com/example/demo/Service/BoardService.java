@@ -5,6 +5,10 @@ import com.example.demo.dto.BoardDto;
 import com.example.demo.entity.Board;
 import com.example.demo.entity.SiteUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,7 +17,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -36,7 +42,7 @@ public class BoardService {
         dto.setAuthor(siteUser);
         dto.setStatus("Selling");
         Board board = boardRepository.save(dto.getBoard());
-        if(!validateImage(board.getImage_url())){
+        if(validateImage(board.getImage_url())){
             boardRepository.delete(board);
             return false;
         }
@@ -63,15 +69,26 @@ public class BoardService {
     }
 
     public Boolean validateImage(String image_url){
-//        URI uri = UriComponentsBuilder
-//                .fromUriString("http://localhost:8000")
-//                .path("/image_validate")
-//                .encode()
-//                .build()
-//                .toUri();
-//        RestTemplate restTemplate = new RestTemplate();
-//        return restTemplate.postForObject(uri, image_url, Boolean.class);
-        return true;
+        URI uri = UriComponentsBuilder
+                .fromUriString("http://localhost:8000")
+                .path("/image_validate")
+                .encode()
+                .build()
+                .toUri();
+        RestTemplate restTemplate = new RestTemplate();
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("path", "C:\\demo_image\\"+image_url);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
+
+        ResponseEntity<Map> response = restTemplate.postForEntity(uri, requestEntity, Map.class);
+
+        System.out.println(response.getBody());
+
+        return (Boolean) response.getBody().get("detected");
     }
 
     public void updateBoardStatus(Long id, String status){

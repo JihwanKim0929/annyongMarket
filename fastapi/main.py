@@ -10,7 +10,7 @@ from transformers import AutoTokenizer, MarianMTModel, pipeline
 
 app = FastAPI(title="e-commerce API")
 
-model = YOLO('/Users/wookkwon/e-commerce/weapon_best.pt')
+model = YOLO('./weapon_best.pt')
 
 ko_en_model_name = "Helsinki-NLP/opus-mt-ko-en"
 ko_en_tokenizer = AutoTokenizer.from_pretrained(ko_en_model_name)
@@ -19,7 +19,7 @@ ko_en_model = MarianMTModel.from_pretrained(ko_en_model_name)
 # en-ko 번역 모델
 en_ko_translator = pipeline('translation', 
                           model='facebook/nllb-200-distilled-600M', 
-                          device=0,  # GPU 사용. CPU만 사용시 device=-1로 변경
+                          device=-1,  # GPU 사용. CPU만 사용시 device=-1로 변경
                           src_lang='eng_Latn',
                           tgt_lang='kor_Hang',
                           max_length=512)

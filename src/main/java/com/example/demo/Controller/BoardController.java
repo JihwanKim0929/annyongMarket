@@ -7,6 +7,8 @@ import com.example.demo.dto.BoardDto;
 import com.example.demo.entity.Board;
 import com.example.demo.entity.SiteUser;
 import com.example.demo.repository.SiteUserRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,7 +45,7 @@ public class BoardController {
     }
 
     @PostMapping("/board/create")
-    public String createBoard(@ModelAttribute BoardDto dto, @RequestParam("image") MultipartFile image, Principal principal, RedirectAttributes rttr)  throws IOException {
+    public String createBoard(@ModelAttribute BoardDto dto, @RequestParam("image") MultipartFile image, Principal principal, RedirectAttributes rttr, HttpServletRequest request)  throws IOException {
         SiteUser user = userService.getUserByUserName(principal.getName());
         if(!boardService.createBoard(dto,user,image)){
             rttr.addFlashAttribute("msg","위험 물질 발견됨! 등록 불가합니다. 경고 누적 1회!");
@@ -51,6 +53,7 @@ public class BoardController {
             siteUserRepository.save(user);
             if(user.getPenalty()>=2){
                 userService.deleteUser(user);
+                request.getSession().invalidate();
                 return "redirect:/user/logout";
             }
         };

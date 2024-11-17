@@ -41,6 +41,12 @@ public class Board {
                 .build();
     }
 
-
+    @PreRemove
+    public void deleteImage(){
+        File imageFile = new File("C:\\demo_image\\"+image_url);
+        if(imageFile.exists()){
+            imageFile.delete();
+        }
+    }
 
 }
