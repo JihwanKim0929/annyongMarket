@@ -37,7 +37,7 @@ async def translate_korean_to_english(request: TranslationRequest):
         result = ko_en_tokenizer.decode(translated[0], skip_special_tokens=True)
         
         return JSONResponse({
-            "korean": request.text,
+            #"korean": request.text,
             "english": result
         })
         
@@ -55,7 +55,7 @@ async def translate_english_to_korean(request: TranslationRequest):
         result = output[0]['translation_text']
         
         return JSONResponse({
-            "english": request.text,
+            #"english": request.text,
             "korean": result
         })
         
