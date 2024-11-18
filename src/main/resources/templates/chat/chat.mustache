@@ -6,7 +6,7 @@
 
     <div id="chat" style="border:1px solid #ccc; padding:10px; width:300px; height:400px; overflow-y:scroll;">
         {{#messagesWithIsCurrentUser}}
-            <p class="{{#isCurrentUser}}my-message{{/isCurrentUser}}{{^isCurrentUser}}opponent-message{{/isCurrentUser}}"><strong>{{message.sender.username}}</strong>: {{message.content}}{{#message.translation}}<br>(trans){{message.translation}}{{/message.translation}}</p>
+            <p class="{{#isCurrentUser}}my-message{{/isCurrentUser}}{{^isCurrentUser}}opponent-message{{/isCurrentUser}}"><strong>{{message.sender.username}}</strong>: {{message.content}}{{#message.translation}}<br><img width="20" height="20" src="https://img.icons8.com/color/96/google-translate.png" alt="google-translate"/>{{message.translation}}{{/message.translation}}</p>
         {{/messagesWithIsCurrentUser}}
     </div>
 
@@ -66,7 +66,7 @@
         var messageElement = document.createElement("p");
         chatMessage = "<strong>" + message.sender.username + ":</strong> " + message.content ;
         if(message.translation){
-            chatMessage = chatMessage + "<br> (trans)" + message.translation;
+            chatMessage = chatMessage + '<br> <img width="20" height="20" src="https://img.icons8.com/color/96/google-translate.png" alt="google-translate"/>' + message.translation;
         }
         messageElement.innerHTML = chatMessage;
         if(message.sender.id === {{user.id}}){
