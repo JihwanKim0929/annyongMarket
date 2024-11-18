@@ -66,15 +66,24 @@ public class ChatMessageController {
 
             String senderLang = sender.getLang();
             String opponentLang = opponent.getLang();
-            //System.out.println("Sender Language: " + senderLang);
-            //System.out.println("Opponent Language: " + opponentLang);
             if (!senderLang.equals(opponentLang)) {
-                String apiEndpoint = senderLang.equals("KO") ? "/ko-en/" : "/en-ko/";
-                //System.out.println("content 내용: " + content);
-                String translation = callTranslationApi(content, apiEndpoint);
-                //System.out.println("번역 결과: " + translation);
-                if (translation != null) {
-                    chatMessage.setTranslation(translation); // 번역 결과 저장
+                String apiEndpoint;
+                if (senderLang.equals("KO") && opponentLang.equals("en-US")) {
+                    apiEndpoint = "/ko-en/";
+                    String translation = callTranslationApi(content, apiEndpoint);
+                    if (translation != null) {
+                        chatMessage.setTranslation(translation); // 번역 결과 저장
+                    }
+                } else if (senderLang.equals("en-US") && opponentLang.equals("KO")) {
+                    apiEndpoint = "/en-ko/";
+                    String translation = callTranslationApi(content, apiEndpoint);
+                    if (translation != null) {
+                        chatMessage.setTranslation(translation); // 번역 결과 저장
+                    }
+                }else {
+                    translator = new Translator(authKey);
+                    TextResult result = translator.translateText(content, null, opponentLang);
+                    chatMessage.setTranslation(result.getText());
                 }
             }
         } catch (Exception e) {
