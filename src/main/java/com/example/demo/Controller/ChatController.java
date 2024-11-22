@@ -34,10 +34,21 @@ public class ChatController {
         SiteUser currentUser = userService.getUserByUserName(principal.getName());
         SiteUser opponent = userService.getUserById(opponentId);
         ChatRoom chatRoom = chatRoomService.findOrCreateChatRoom(currentUser, opponent);
+        if(currentUser.getId().equals(chatRoom.getSiteUser1().getId()))
+            opponent = chatRoom.getSiteUser2();
+        else
+            opponent = chatRoom.getSiteUser1();
         List<ChatMessage> messages = chatMessageService.getMessagesByChatRoom(chatRoom);
+        List<Map<String,Object>> messagesWithIsCurrentUser = new ArrayList<>();
+        for (ChatMessage message : messages) {
+            Map<String,Object> map = new HashMap<>();
+            map.put("message",message);
+            map.put("isCurrentUser", message.getSender().getId().equals(currentUser.getId()));
+            messagesWithIsCurrentUser.add(map);
+        }
         model.addAttribute("chatRoom", chatRoom);
         model.addAttribute("user",currentUser);
-        model.addAttribute("messages",messages);
+        model.addAttribute("messagesWithIsCurrentUser",messagesWithIsCurrentUser);
         model.addAttribute("opponent",opponent);
         return "chat/chat";
     }
