@@ -1,4 +1,4 @@
-<img src="https://github.com/user-attachments/assets/dc294e23-7b8b-4edd-8341-f69cd8ee6afc](https://github.com/user-attachments/assets/c3db14dd-a36a-443a-89d3-557c222e8f3e">
+<img src="https://github.com/user-attachments/assets/fc0c48e1-de83-423f-972b-63267db9b644">
 
 # annyongMarket
 자동 제재, 번역 채팅 적용 중고거래 웹사이트 프로젝트
