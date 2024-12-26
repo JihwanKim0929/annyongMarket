@@ -29,7 +29,7 @@
 
 &nbsp;
 
-# 개인 기여 사항
+# 개인 기여 사항 (김지환)
 ## 활용 기술 스택
 ![Generic badge](https://img.shields.io/badge/jdk-17-orange.svg)
 
@@ -73,6 +73,16 @@
 
 
 # 구현 결과
+
+<img src="https://github.com/user-attachments/assets/3af0c5d5-462b-44e8-af55-533735f45029">
+<img src="https://github.com/user-attachments/assets/345932f8-6d43-4739-ad43-3412929fb0f9">
+<img src="https://github.com/user-attachments/assets/99b919b2-0a52-462f-a79d-bfb644064c0e">
+<img src="https://github.com/user-attachments/assets/d7840e69-beb6-4705-b387-88b13b6a2765">
+<img src="https://github.com/user-attachments/assets/c27ab41c-3917-44d5-a9d7-bc1580bb1e90">
+<img src="https://github.com/user-attachments/assets/a3bc3e1d-5492-4809-8845-b4b4a1471589">
+<img src="https://github.com/user-attachments/assets/602a4fb2-675b-45e5-8cb5-0bcd2d5ea450">
+
+
 실시간 채팅(언어가 같은 경우)
 
 <img src="https://github.com/user-attachments/assets/500d1f38-ddd4-4b30-ab1b-55d8d2cecf39">
