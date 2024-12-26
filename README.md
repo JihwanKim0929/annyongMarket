@@ -55,7 +55,6 @@
 ![DeepL API](https://img.shields.io/badge/DeepL%20API-0B65C2?style=for-the-badge&logo=deepl&logoColor=white) - 번역 API (한-영 제외한 언어쌍 간의 번역)
 
 ![WebSocket](https://img.shields.io/badge/WebSocket-009688?style=for-the-badge&logo=websocket&logoColor=white)
-
 ![STOMP](https://img.shields.io/badge/STOMP%20Protocol-0033A0?style=for-the-badge)
 
 -팀에 프론트엔드 전문 팀원이 없어 Spring Boot를 활용해 백엔드 서버 및 서버사이드 렌더링 구현(mustache 템플릿엔진 사용)
