@@ -73,13 +73,30 @@
 
 
 # 구현 결과
+메인화면(물품 리스트)
 
 <img src="https://github.com/user-attachments/assets/3af0c5d5-462b-44e8-af55-533735f45029">
+
+로그인 페이지
+
 <img src="https://github.com/user-attachments/assets/345932f8-6d43-4739-ad43-3412929fb0f9">
+
+회원가입 페이지
 <img src="https://github.com/user-attachments/assets/99b919b2-0a52-462f-a79d-bfb644064c0e">
+
+게시글 작성 페이지
 <img src="https://github.com/user-attachments/assets/d7840e69-beb6-4705-b387-88b13b6a2765">
+
+위험물품 감지시 등록 거부 기능 작동 
+
 <img src="https://github.com/user-attachments/assets/c27ab41c-3917-44d5-a9d7-bc1580bb1e90">
+
+타 유저의 게시글 상세화면
+
 <img src="https://github.com/user-attachments/assets/a3bc3e1d-5492-4809-8845-b4b4a1471589">
+
+본인이 작성한 게시글 상세화면(판매중,예약중,판매완료 선택 가능)
+
 <img src="https://github.com/user-attachments/assets/602a4fb2-675b-45e5-8cb5-0bcd2d5ea450">
 
 
