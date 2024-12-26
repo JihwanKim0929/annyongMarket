@@ -79,6 +79,6 @@
 
 실시간 채팅 - 서로 언어가 다른경우
 
-<img src="https://github.com/user-attachments/assets/aaf05501-d797-4b4a-ba12-a989d1ebfe8">
+<img src="https://github.com/user-attachments/assets/aaf05501-d797-4b4a-ba12-a989d1ebfe8f">
 
 
