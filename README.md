@@ -74,6 +74,11 @@
 
 # 구현 결과
 실시간 채팅(언어가 같은 경우)
+
 <img src="https://github.com/user-attachments/assets/500d1f38-ddd4-4b30-ab1b-55d8d2cecf39">
+
+실시간 채팅 - 서로 언어가 다른경우
+
+<img src="https://github.com/user-attachments/assets/aaf05501-d797-4b4a-ba12-a989d1ebfe8">
 
 
