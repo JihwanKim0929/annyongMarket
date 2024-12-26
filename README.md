@@ -9,12 +9,20 @@
 # 팀원소개
 |김지환|김욱권|조수정|
 |---|---|---|
-|BackEnd,AI(이미지 검증)|AI(한-영 번역)|Publishing/design|
+|BackEnd,AI(이미지 검증) 모델 학습|AI Server|Publishing/design|
 
 &nbsp;
 
 # 프로젝트 소개
 판매글 사진의 위험물(무기)자동 탐지 및 등록거부, 실시간 번역 기능을 탑재한 1대1채팅이 가능한 중고거래 웹사이트 프로젝트
+
+# 핵심 기능
+-로그인 및 회원가입
+-판매글 등록 기능
+-판매글 이미지 내 위험물질 탐지 및 등록 거부 기능
+-다중 적발시 탈퇴 기능
+-판매글 내 버튼을 통한 1대1 채팅 기능
+-채팅 내부 실시간 번역 기능
 
 # 시스템 구성도
 <img src="https://github.com/user-attachments/assets/86f66a56-cac2-40bb-a363-b9a4e8458b5a">
@@ -33,38 +41,39 @@
 
 ![JPA](https://img.shields.io/badge/JPA-hibernate-orange)
 
-![Mustache](https://img.shields.io/badge/Mustache-ffdd66?style=for-the-badge&logo=mustache&logoColor=black)
+![Mustache](https://img.shields.io/badge/Mustache-ffdd66?style=for-the-badge&logo=mustache&logoColor=black) - 서버사이드 랜더링 템플릿엔진
 
+![YOLOv8](https://img.shields.io/badge/YOLOv8-ff9600?style=for-the-badge&logo=ai&logoColor=white)
 
-- 유저, 애완동물, 질병, 진단, 예약, 수첩, 게시글, 댓글, 동물병원 엔티티 구현 및 테이블 생성(Spring Data JPA를 활용)
+![Roboflow Universe](https://img.shields.io/badge/Roboflow%20Universe-black?style=for-the-badge&logo=roboflow&logoColor=white) - 무기 데이터셋 
 
-- 각 엔티티 Create, Read, Delete 관련 service, controller, dto, repository 메소드 & API 작성
+![DeepL API](https://img.shields.io/badge/DeepL%20API-0B65C2?style=for-the-badge&logo=deepl&logoColor=white) - 번역 API (한-영 제외한 언어쌍 간의 번역)
 
-- Spring Security를 활용하여 유저 로그인 구현, 일반유저와 수의사 구분
+![WebSocket](https://img.shields.io/badge/WebSocket-009688?style=for-the-badge&logo=websocket&logoColor=white)
 
-- 진단기능을 위한 AI모델 서빙을 위해 RestTemplate을 활용한 Post요청 구현 및 FastApi코드 작성
-  
-- AWS s3를 이미지 저장소로 활용하도록 구현
+![STOMP](https://img.shields.io/badge/STOMP%20Protocol-0033A0?style=for-the-badge)
 
-- (DB연동)개발 단계에서는 인메모리방식 h2 DB사용, 이후 배포 단계에서는 AWS rds mysql로 DB 변경
+-팀에 프론트엔드 전문 팀원이 없어 Spring Boot를 활용해 백엔드 서버 및 서버사이드 렌더링 구현(mustache 템플릿엔진 사용)
 
-- AWS ec2 ubuntu 인스턴스를 생성하여 프론트엔드,백엔드,AI서버 배포 및 nginx를 활용한 https와 도메인 적용(petspital.shop)
+-판매글,채팅메세지,채팅방,유저 엔티티 구현(JPA)
+
+-배포는 하지 않고 인메모리 H2 DB를 연동하여 구현
+
+-엔티티 CRUD 관련 메소드들 작성, 회원가입시 국가 선택하도록함(채팅 번역 위해)
+
+-스프링 시큐리티를 활용하여 유저 로그인 구현
+
+-게시글 등록시 이미지 검증 AI모델 호출 로직 구현(RestTemplate), AI모델 서빙은 타 팀원이 FAST API로 AI 서버 구성하여 API 호출하는 방식으로 사용
+
+-무기 감지를 위한 Yolo V8 모델 훈련(Roboflow 데이터셋 활용) - 오탐지 비율 감소를 위해 COCO Dataset에서 무기가 포함되지 않은 배경데이터셋 10%을 포함하여 학습 진행
+
+-웹소켓(Stomp)을 활용하여 유저들간 1대1 실시간 채팅 구현(DB에 채팅 메시지 저장하도록 하여 채팅방 재 입장시, 채팅방에 현재 미입장 상태에서도 기존 메시지 볼수있도록 구현, 웹소켓은 실시간 메시지 렌더링을 위하여 사용)
+
+-한글-영어 쌍은 FastApi의 번역 메소드를 호출하도록 하였고 이외의 경우 DeepL Api를 호출하도록 하여 자신의 말이 채팅 상대방의 언어로 자동 번역되도록 구현(서로 언어가 같은 경우 번역X)
+
 
 # 구현 결과
-<img src="https://github.com/user-attachments/assets/aadefd16-cb9f-4276-89eb-aa5eadb808e5" alt="스크린샷 2024-12-26 113652">
-<img src="https://github.com/user-attachments/assets/d4eff8d1-bb78-4f9b-8978-fa488019778e" alt="스크린샷 2024-12-26 113702">
-<img src="https://github.com/user-attachments/assets/e99af62d-98c9-4928-9f8c-43816026d525" alt="스크린샷 2024-12-26 113710">
-<img src="https://github.com/user-attachments/assets/3d311e2c-1984-4879-bccd-6865762627cf" alt="스크린샷 2024-12-26 113718">
-<img src="https://github.com/user-attachments/assets/47cb54b6-1abd-4b2f-b740-2fe9fb1af6b3" alt="스크린샷 2024-12-26 113726">
-<img src="https://github.com/user-attachments/assets/708ae1d2-e2a6-4d96-b044-72228eb1d203" alt="스크린샷 2024-12-26 113733">
-<img src="https://github.com/user-attachments/assets/4690e70b-f82a-48b8-9db3-2ec2e22e5a7e" alt="스크린샷 2024-12-26 115015">
-<img src="https://github.com/user-attachments/assets/76f5bcf5-1316-48a8-adb5-a1e3dbb7d5b3" alt="스크린샷 2024-12-26 115027">
-<img src="https://github.com/user-attachments/assets/b325a7c1-5af7-490b-b1a3-792febc4932b" alt="스크린샷 2024-12-26 115058">
-<img src="https://github.com/user-attachments/assets/ce36cd11-c28c-4463-a3e3-82ab08e8529b" alt="스크린샷 2024-12-26 115106">
-<img src="https://github.com/user-attachments/assets/3a367617-8136-4885-ab94-ca021a0865bc" alt="스크린샷 2024-12-26 113741">
-<img src="https://github.com/user-attachments/assets/512437ad-c198-4dff-9010-65a6e8452104" alt="스크린샷 2024-12-26 113748">
-<img src="https://github.com/user-attachments/assets/53954275-60a8-4cb3-a99c-e22c66d2725f" alt="스크린샷 2024-12-26 115003">
-<img src="https://github.com/user-attachments/assets/8fc6c0c9-05b4-4751-b212-f0695d0ec40b" alt="스크린샷 2024-12-26 115116">
-<img src="https://github.com/user-attachments/assets/db04d904-fb27-4a9c-94d7-f0f2b9376d35" alt="스크린샷 2024-12-26 115125">
-<img src="https://github.com/user-attachments/assets/e3441715-863b-4938-9981-04ef526924fe" alt="스크린샷 2024-12-26 115136">
+실시간 채팅(언어가 같은 경우)
+<img src="https://github.com/user-attachments/assets/500d1f38-ddd4-4b30-ab1b-55d8d2cecf39">
+
 
